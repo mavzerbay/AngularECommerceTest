@@ -1,11 +1,32 @@
-.btn-outline-secondary{
-    color:#2E3192;
-    border-color: #2E3192;
+.btn{
+    width: 30%;
+    height: 40px;
 }
-.btn-outline-secondary:hover{
-    color:white;
-    background-color: #2E3192;
+.image :hover{
+    opacity: 1;
+    & button{
+        transform: none;
+        opacity: 1;
+    }
 }
-a{
-    color: #2E3192;
+
+.hover-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255,255,255,.5);
+    opacity: 0;
+    transition: all 0.5s;
+    & button{
+        z-index: 1000;
+        transition: all 0.5s;
+    }
+    & button:first-of-type{
+        transform: translateX(-20px);
+    }
+    & button:last-of-type{
+        transform: translateX(20px);
+    }
 }

@@ -6,12 +6,12 @@ import { TestErrorComponent } from './core/test-error/test-error.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
-  {path:'test-error',component:TestErrorComponent},
-  {path:'server-error',component:ServerErrorComponent},
-  {path:'not-found',component:NotFoundComponent},
-  {path:'shop',loadChildren:()=>import('./shop/shop.module').then(mod=>mod.ShopModule)},
-  {path:'**',redirectTo:'',pathMatch:'full'},
+  {path:'',component:HomeComponent,data:{breadcrumb:'Anasayfa'}},
+  {path:'test-error',component:TestErrorComponent,data:{breadcrumb:'Hata Sayfası'}},
+  {path:'server-error',component:ServerErrorComponent,data:{breadcrumb:'Sunucu Hatası'}},
+  {path:'not-found',component:NotFoundComponent,data:{breadcrumb:'Bulunamadı'}},
+  {path:'shop',loadChildren:()=>import('./shop/shop.module').then(mod=>mod.ShopModule),data:{breadcrumb:'Ürünler'}},
+  {path:'**',redirectTo:'not-found',pathMatch:'full'},
 ];
 
 @NgModule({
