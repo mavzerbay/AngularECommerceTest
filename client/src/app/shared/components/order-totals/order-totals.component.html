@@ -1,0 +1,22 @@
+<div class="bg-light px-4 py-3 tex-uppercase font-weight-bold">
+    Sipariş Özeti
+</div>
+<div class="p-4">
+    <p class="font-italic mb-4">
+        Ödeme sırasında yapılan seçimlere bağlı olarak gönderi ücreti eklenecektir
+    </p>
+    <ul class="list-unstyled mb-4" *ngIf="(basketTotals$ | async) as totals">
+        <li class="d-flex justify-content-between py-3 border-bottom">
+            <strong class="text-muted">Sipariş Tutarı</strong>
+            <strong>{{totals.subtotal | currency:"TRY":"₺ "}}</strong>
+        </li>
+        <li class="d-flex justify-content-between py-3 border-bottom">
+            <strong class="text-muted">Gönderi Ücreti</strong>
+            <strong>{{totals.shipping | currency:"TRY":"₺ "}}</strong>
+        </li>
+        <li class="d-flex justify-content-between py-3 border-bottom">
+            <strong class="text-muted">Toplam Tutar</strong>
+            <strong>{{totals.total | currency:"TRY":"₺ "}}</strong>
+        </li>
+    </ul>
+</div>

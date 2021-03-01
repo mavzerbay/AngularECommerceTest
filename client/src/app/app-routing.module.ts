@@ -11,6 +11,8 @@ const routes: Routes = [
   {path:'server-error',component:ServerErrorComponent,data:{breadcrumb:'Sunucu Hatası'}},
   {path:'not-found',component:NotFoundComponent,data:{breadcrumb:'Bulunamadı'}},
   {path:'shop',loadChildren:()=>import('./shop/shop.module').then(mod=>mod.ShopModule),data:{breadcrumb:'Ürünler'}},
+  {path:'basket',loadChildren:()=>import('./basket/basket.module').then(mod=>mod.BasketModule),data:{breadcrumb:'Sepetim'}},
+  {path:'checkout',loadChildren:()=>import('./checkout/checkout.module').then(mod=>mod.CheckoutModule),data:{breadcrumb:'Ödeme'}},
   {path:'**',redirectTo:'not-found',pathMatch:'full'},
 ];
 
