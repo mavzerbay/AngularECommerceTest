@@ -4,9 +4,11 @@ using System.Threading.Tasks;
 using API.Dtos;
 using API.Errors;
 using API.Extensions;
+using API.Validators;
 using AutoMapper;
 using Core.Entities.Identity;
 using Core.Interfaces;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -58,11 +60,18 @@ namespace API.Controllers
 
         [Authorize]
         [HttpPut("address")]
-        public async Task<ActionResult<AddressDto>> UpdateUserAddress(AddressDto address)
+        public async Task<ActionResult<AddressDto>> UpdateUserAddress(AddressDto addressDto)
         {
+            AddressDtoValidator validator = new AddressDtoValidator();
+            ValidationResult validationResult = validator.Validate(addressDto);
+
+            if(!validationResult.IsValid){
+                return new BadRequestObjectResult(new ApiValidationErrorResponse { Errors = validationResult.Errors.Select(x=>x.ErrorMessage) });
+            }
+            
             var user = await _userManager.FindUserByClaimsPrincipalWithAddressAsync(HttpContext.User);
 
-            user.Address = _mapper.Map<AddressDto, Address>(address);
+            user.Address = _mapper.Map<AddressDto, Address>(addressDto);
 
             var result = await _userManager.UpdateAsync(user);
 
@@ -93,6 +102,18 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
+            if (CheckEmailExistsAsync(registerDto.Email).Result.Value)
+            {
+                return new BadRequestObjectResult(new ApiValidationErrorResponse { Errors = new[] { "E-posta zaten kullanılıyor." } });
+            }
+
+            RegisterDtoValidator validator = new RegisterDtoValidator();
+            ValidationResult validationResult = validator.Validate(registerDto);
+
+            if(!validationResult.IsValid){
+                return new BadRequestObjectResult(new ApiValidationErrorResponse { Errors = validationResult.Errors.Select(x=>x.ErrorMessage) });
+            }
+
             var user = new AppUser
             {
                 DisplayName = registerDto.DisplayName,
