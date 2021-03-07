@@ -5,17 +5,18 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Core.Entities;
+using Core.Entities.OrderAggregate;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Data
 {
     public class StoreContextSeed
     {
-        public static async Task SeedAsync(StoreContext context,  ILoggerFactory loggerFactory)
+        public static async Task SeedAsync(StoreContext context, ILoggerFactory loggerFactory)
         {
             try
             {
-                if  (!context.ProductBrands.Any())
+                if (!context.ProductBrands.Any())
                 {
                     var brandsData = File.ReadAllText("../Infrastructure/Data/SeedData/brands.json");
                     var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsData);
@@ -47,6 +48,18 @@ namespace Infrastructure.Data
                     foreach (var item in products)
                     {
                         context.Products.Add(item);
+                    }
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.DeliveryMethods.Any())
+                {
+                    var dmData = File.ReadAllText("../Infrastructure/Data/SeedData/delivery.json");
+                    var methods = JsonSerializer.Deserialize<List<DeliveryMethod>>(dmData);
+
+                    foreach (var item in methods)
+                    {
+                        context.DeliveryMethods.Add(item);
                     }
                     await context.SaveChangesAsync();
                 }

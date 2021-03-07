@@ -1,0 +1,30 @@
+[
+  {
+    "Id": 1,
+    "ShortName": "Kargo1",
+    "Description": "En hızlı teslimat süresi",
+    "DeliveryTime": "1-2 Gün",
+    "Price": 10
+  },
+  {
+    "Id": 2,
+    "ShortName": "Kargo2",
+    "Description": "5 iş günü içinde teslim",
+    "DeliveryTime": "2-5 Gün",
+    "Price": 5
+  },
+  {
+    "Id": 3,
+    "ShortName": "Kargo3",
+    "Description": "Daha yavaş ama ucuz",
+    "DeliveryTime": "5-10 Gün",
+    "Price": 2
+  },
+  {
+    "Id": 4,
+    "ShortName": "Ücretsiz",
+    "Description": "Ücretsiz! Süresi biraz uzun",
+    "DeliveryTime": "1-2 Hafta",
+    "Price": 0
+  }
+]
