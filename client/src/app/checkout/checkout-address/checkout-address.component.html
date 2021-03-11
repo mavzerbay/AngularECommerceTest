@@ -1,0 +1,38 @@
+<div class="my-4" [formGroup]="checkoutForm">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4>Teslimat Adresi</h4>
+        <button class="btn btn-outline-success" (click)="saveUserAddress()"
+            [disabled]="!checkoutForm.get('addressForm').valid || !checkoutForm.get('addressForm').dirty">
+            Varsayılan Adres Olarak Kaydet
+        </button>
+    </div>
+    <div class="row" formGroupName="addressForm">
+        <div class="form-group col-6">
+            <app-text-input [label]="'Ad'" formControlName="firstName"></app-text-input>
+        </div>
+        <div class="form-group col-6">
+            <app-text-input [label]="'Soyad'" formControlName="lastName"></app-text-input>
+        </div>
+        <div class="form-group col-6">
+            <app-text-input [label]="'Şehir'" formControlName="city"></app-text-input>
+        </div>
+        <div class="form-group col-6">
+            <app-text-input [label]="'İlçe'" formControlName="state"></app-text-input>
+        </div>
+        <div class="form-group col-6">
+            <app-text-input [label]="'Sokak'" formControlName="street"></app-text-input>
+        </div>
+        <div class="form-group col-6">
+            <app-text-input [label]="'Posta Kodu'" formControlName="zipcode"></app-text-input>
+        </div>
+    </div>
+</div>
+
+<div class="float-none d-flex justify-content-between flex-column flex-lg-row mb-5">
+    <button class="btn btn-primary" routerLink="/basket">
+        <i class="fa fa-angle-left"></i> Sepete Dön
+    </button>
+    <button class="btn btn-primary" cdkStepperNext>
+        Teslimat Yöntemi Seçimine Geç <i class="fa fa-angle-right"></i>
+    </button>
+</div>
