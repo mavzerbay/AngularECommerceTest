@@ -11,10 +11,17 @@ const routes: Routes = [
   { path: 'test-error', component: TestErrorComponent, data: { breadcrumb: 'Hata Sayfası' } },
   { path: 'server-error', component: ServerErrorComponent, data: { breadcrumb: 'Sunucu Hatası' } },
   { path: 'not-found', component: NotFoundComponent, data: { breadcrumb: 'Bulunamadı' } },
+  
   { path: 'shop', loadChildren: () => import('./shop/shop.module').then(mod => mod.ShopModule), data: { breadcrumb: 'Ürünler' } },
+  
   { path: 'basket', loadChildren: () => import('./basket/basket.module').then(mod => mod.BasketModule), data: { breadcrumb: 'Sepetim' } },
+  
   { path: 'checkout', canActivate: [AuthGuard], loadChildren: () => import('./checkout/checkout.module').then(mod => mod.CheckoutModule), data: { breadcrumb: 'Ödeme' } },
+  
+  { path: 'orders', canActivate: [AuthGuard], loadChildren: () => import('./orders/orders.module').then(mod => mod.OrdersModule), data: { breadcrumb: 'Siparişlerim' } },
+  
   { path: 'account', loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule), data: { breadcrumb: { skip: true } } },
+  
   { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
 ];
 

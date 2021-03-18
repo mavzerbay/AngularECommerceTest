@@ -3,5 +3,6 @@
         <i class="fa fa-check circle fa-5x" style="color:green"></i>
     </div>
     <h2>Teşekkürler. Siparişiniz başarıyla alındı.</h2>
-    <button class="btn btn-outline-success">Siparişimi Görüntüle</button>
+    <button *ngIf="order" routerLink="/orders/{{order?.id}}" class="btn btn-outline-success">Siparişimi Görüntüle</button>
+    <button *ngIf="!order" routerLink="/orders" class="btn btn-outline-success">Siparişimi Görüntüle</button>
 </div>
