@@ -19,7 +19,7 @@
     <button class="btn btn-primary" cdkStepperPrevious>
         <i class="fa fa-angle-left"></i> Adrese Dön
     </button>
-    <button class="btn btn-primary" cdkStepperNext>
+    <button [disabled]="checkoutForm.get('deliveryForm').invalid" class="btn btn-primary" cdkStepperNext>
         Önizlemeye Geç <i class="fa fa-angle-right"></i>
     </button>
 </div>

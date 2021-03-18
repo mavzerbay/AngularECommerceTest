@@ -19,6 +19,7 @@ export class OrdersService {
   }
 
   getStatusName(status: String) {
+    console.log(status);
     var statusReturn = "";
     switch (status) {
       case "Pending":
@@ -29,10 +30,8 @@ export class OrdersService {
         break;
       case "PaymentFailed":
         statusReturn = "Ödeme Başarısız";
-
-      default: statusReturn = "";
-        break;
     }
+    console.log({statusReturn});
     return statusReturn;
   }
 
@@ -47,9 +46,6 @@ export class OrdersService {
         break;
       case "PaymentFailed":
         statusColor = "text-danger";
-
-      default: statusColor = "text-danger";
-        break;
     }
     return statusColor;
   }

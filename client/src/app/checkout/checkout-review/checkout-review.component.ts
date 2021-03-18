@@ -20,4 +20,11 @@ export class CheckoutReviewComponent implements OnInit {
     this.basket$ = this.basketService.basket$;
   }
 
+  createPaymentIntent() {
+    return this.basketService.createPaymentIntent().subscribe(() => {
+      this.appStepper.next();
+    }, error => {
+      console.log(error);
+    })
+  }
 }
